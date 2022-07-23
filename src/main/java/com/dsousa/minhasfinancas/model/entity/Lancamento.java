@@ -21,7 +21,6 @@ import com.dsousa.minhasfinancas.model.enums.StatusLancamento;
 import com.dsousa.minhasfinancas.model.enums.TipoLancamento;
 
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
