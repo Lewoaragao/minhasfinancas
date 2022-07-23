@@ -58,6 +58,20 @@ public class UsuarioServiceTest {
 		service.autenticar("email@email.com", "senha");
 	}
 	
+	@Test(expected = ErroAutenticacao.class)
+	public void deveLancarErroQuandoSenhaNaoBater() {
+		// cenário
+		String senha = "senha";
+		Usuario usuario = Usuario.builder().email("email@email.com").senha(senha).build();
+		Mockito.when(repository.findByEmail(Mockito.anyString())).thenReturn(Optional.of(usuario));
+		
+		// ação 
+		Throwable exception = Assertions.catchThrowable(() -> service.autenticar("email@email.com", "123"));
+		Assertions.assertThat(exception).isInstanceOf(ErroAutenticacao.class).hasMessage("a");
+		
+		// verificação
+	}
+	
 	@Test(expected = Test.None.class)
 	public void deveValidarEmail() {
 		// cenário
